@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<img style="width: 30%;" src="{% static 'images/img.png' %}" alt="Screenshot">
+
+<h1>Projects</h1>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste ipsam nulla atque quam
+aliquid ratione optio libero nihil, exercitationem 
+reiciendis ducimus beatae expedita officia sequi, cum adipisci, eaque labore sed.</p>
+
+<h2>Name: {{name}}</h2>
+
+<table>
+    <thead>
+        <tr>
+        
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+
+        <tr>
+            
+            <td><a href="{% url 'project' project.id %}">{{project.title}}  {% if project.topRated %} <strong>TOP RATED</strong>{% endif %}</a></td>
+            <td>{{project.description}}</td>
+            <td><a href="{% url 'update-project' project.id %}">Edit</a></td>
+            <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
